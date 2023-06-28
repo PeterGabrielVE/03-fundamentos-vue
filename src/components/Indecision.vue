@@ -1,10 +1,41 @@
 <template>
-  <h1>Indecision</h1>
+    <img src="https://via.placeholder.com/250" alt="bg">
+    <div class="bg-dark"></div>
+
+    <div class="indecision-container">
+        <input
+            v-model="question"
+            type="text"
+            placeholder="Hazme una pregunta">
+        <p>Recuerda terminar con un signo de interrogación (?)</p>
+
+        <h2>{{ question }}</h2>
+    </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            question: null,
+            answer: null,
+            img: null,
+            isValidQuestion: false
+        }
+    },
+    watch:{
+        question( value, oldValue ){
 
+        this.isValidQuestion = false
+
+        if( !value.includes('?') ) return
+
+        this.isValidQuestion = true
+
+        // TODO: Realizar petición http
+        this.getAnswer()
+        }
+    }
 }
 </script>
 
