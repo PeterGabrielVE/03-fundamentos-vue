@@ -22,6 +22,16 @@ describe('Counter Component',() => {
         expect( h2Value ).toBe('Counter')
 
     })
+
+    test('el valor por defecto debe ser 100 en el p', () => {
+      
+        const wrapper = shallowMount( Counter );
+        
+        const pTags = wrapper.findAll('p');
+
+        console.log(pTags)
+    })
+    
     
     
     
