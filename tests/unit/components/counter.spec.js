@@ -42,10 +42,10 @@ describe('Counter Component',() => {
 
         expect( value ).toBe('101');
 
-        const dereaseBtn = wrapper.find('button')[1];
+        const decreaseBtn = wrapper.findAll('button')[1];
 
-        await dereaseBtn.trigger('click')
-        await dereaseBtn.trigger('click')
+        await decreaseBtn.trigger('click')
+        await decreaseBtn.trigger('click')
 
         value = wrapper.find('[data-testid="counter"]').text()
 
