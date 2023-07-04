@@ -36,7 +36,6 @@ export default {
     },
     computed:{
         squareCounter(){
-           console.log('computed squareConuer') ;
            return this.counter * this.counter;
         },
         customTitle(){
