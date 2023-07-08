@@ -6,10 +6,14 @@ describe('Indecision component', () =>{
     let wrapper;
     let clgSpy;
 
+    global.fetch = jest.fn()
+
     beforeEach( () =>{
         wrapper = shallowMount( Indecision )
 
         clgSpy = jest.spyOn( console, 'log' )
+
+        jest.clearAllMocks()
     })
 
     test('debe de hacer match con el snapshot', () =>{
@@ -29,7 +33,15 @@ describe('Indecision component', () =>{
 
     })
 
-    test('Escribir el simbolo  de "?" debe de disparar el fetch', () =>{
+    test('Escribir el simbolo  de "?" debe de disparar el getAnswer', async() =>{
+
+        const getAnswerSpy = jest.spyOn( wrapper.vm, 'getAnswer' )
+        
+        const input = wrapper.find('input')
+        await input.setValue('Hola Mundo')
+
+         expect( clgSpy ).toHaveBeenCalledTimes(1)
+         expect( getAnswerSpy ).not.toHaveBeenCalled()
 
     })
 
