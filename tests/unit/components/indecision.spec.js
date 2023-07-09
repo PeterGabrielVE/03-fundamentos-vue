@@ -61,10 +61,18 @@ describe('Indecision component', () =>{
         expect( wrapper.vm.img ).toBe('https://yesno.wtf/assets/yes/7-653c8ee5d3a6bbafd759142c9c18d76c.gif')
     })
 
-    test('pruebas en getAnswer - Fallo en el API', () =>{
+    test('pruebas en getAnswer - Fallo en el API', async() => {
+
+        fetch.mockImplementationOnce( () => Promise.reject('API is down') )
+
+        await wrapper.vm.getAnswer()
+
+        const img = wrapper.find('img')
+
+        expect( img.exists() ).toBeFalsy()
+        expect( wrapper.vm.answer ).toBe('No se pudo cargar del API')
 
     })
-
 
 
 })
